@@ -1,0 +1,24 @@
+* Django Channels
+- For regular Connection its use WebSocket's
+- For Riyal time Data
+- Read Documentation
+* Installation of channels
+- pip install channels
+- Installation Redis
+- Run Redis CLI file
+- Install Library for channel:
+	pip install channels-redis
+- Add in setting.py:
+	INSTALLED_APP=['channels']
+- ADD list from:
+ovoi.org/project/channels redis/
+- Replays WSGI with 
+	ASGI_APPLICATION = 'core.asgi.application'
+* Routing
+- Google Search: Django Channels Routing
+- We must add ProtocolTypeRouter, URLRouter
+- Now we are edit asgi.py file:
+	...
+- Create Consumers.py
+
+
