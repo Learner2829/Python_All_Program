@@ -1,0 +1,107 @@
+	* Django Notes
+
+* Install Django
+- pip install Django
+- pip install Django --upgrade
+
+* Create WebApp project
+- Download Django extensions
+- django-admin startproject project_name
+- open vs code in project folder
+- python manage.py runserver
+-----------------------------------------
+- Django follows MVT(Model View Template)
+- Model is a Information about the database
+- View is a Reparations the Data its pull data from database in pull in template
+- Template is a CSS HTML JAVASCRIPT
+----------------------------------------
+* Create App
+- python manage.py startapp app_name
+- Create url.py in app
+- Copy code from project url file
+- add url in project like:
+	from home import views
+	path('',include('home.urls'))
+- add url like:
+	path("",view.index,name='home')
+- create function in views.py:
+	def index(request):
+		return HttpResponse("This is homepage")
+- create same as add about page ,contact page ,services
+
+* Templet and Static 
+- create folder static and templates but make sure location is root
+- we can see static file url in setting.py
+- add this code in setting.py:
+	STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, "static") ]
+- We should not put imported file static folder
+- edit in templete list in setting file like:
+	'DIRS':[os.path.join(BASE_DIR, "static")]
+- create index.html in templetes folder
+- edit url in home folder:
+	def index(request):	
+	return render(request, 'index.html')	
+- We can set variable like:
+	views.py -> 
+	def index(request):	
+		return render(request, 'index.html',context)
+		Context = {'var':"this is var"}
+	index.html->
+	{{var}}
+* bootstrap
+- We can use in index.html
+* Migrations Commands
+- python manage.py makemigrations
+- python manage.py migrate
+* Create User
+- python manage.py createsuperuser
+* Add blogs in django
+- <%block title%> <%endblock%>
+- <%block body%> <%endblock body%>
+- <%extends 'base.html'%>
+* Form handle
+- action = contact , methos = post
+- we must user <%csrf_token%> for authorize
+* Database using django model
+- open model.py
+- Add following code:
+	
+# Create your models here.
+	class Contact(models.Model):
+		name = models.CharField(max_length=122)
+		email = models.CharField(max_length=122)
+		phone = models.CharField(max_length=12)
+		desc = models.TextField()
+		date = models.DateField()
+-Register your models here admin.py:
+	
+	from django.contrib import admin 
+	from home.models import Contact
+	admin.site.register(Contact)
+- Edit list INSTALLED_APP list in setting.py
+		INSTALLED_APP =['home.apps.Homeconfig']
+- command:python manage.py makemigrations
+
+* Form handle in views.py
+- create object like this and save it in database:
+	
+- We can change header of object:
+	def_str_(self):
+		return self.name
+* Django messages
+- Modify setting.py
+- from djanfo.contrib.messages import constants as messages
+* Shell
+- We can use direct database via shell :
+	Python manage.py shell
+	Contact.objects.filter(name="name")
+	Contact.objects.filter(desc_startwith="text")
+- Google search:- making query django
+
+* Basic Authication app
+- 2:26:39
+-  When we host our django project so we must provide
+	ALLOW_HOSTS=["codewithharry.com"]
+
+	
